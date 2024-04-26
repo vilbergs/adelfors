@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "tsx watch src/server.tsx"
+  },
+  "dependencies": {
+    "hono": "^4.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1"
+  },
+  "workspaces": [
+    "server",
+    "client",
+    "types"
+  ]
+}
