@@ -1,34 +1,40 @@
-import React from 'react'
-import { useDraggable } from '@dnd-kit/core'
-import { CSS } from '@dnd-kit/utilities'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { cn } from '@/lib/utils'
 import { Task } from 'types'
 
 interface TaskCardProps extends Task {
   className?: string
+  onChange: (task: Task) => void
 }
 
-export const TaskCard = ({ id, name, className }: TaskCardProps) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
-  })
-
-  const style = {
-    transform: CSS.Translate.toString(transform),
-  }
-
+export const TaskCard = ({
+  id,
+  name,
+  status,
+  className,
+  onChange,
+}: TaskCardProps) => {
   return (
-    <Card
-      className={className}
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
+    <div
+      className={cn(
+        'flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4',
+        className
+      )}
     >
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-      </CardHeader>
-    </Card>
+      <Checkbox
+        id={`task_checkbox_${id}`}
+        checked={status === 'DONE'} // TODO: implement isComplete
+        onCheckedChange={(checked) =>
+          onChange({ id, name, status: checked ? 'DONE' : 'TODO' })
+        }
+      />
+      <label
+        htmlFor={`task_checkbox_${id}`}
+        className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {name}
+      </label>
+    </div>
   )
 }
 TaskCard.displayName = 'TaskCard'

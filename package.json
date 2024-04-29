@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "dev": "tsx watch src/server.tsx"
+    "server:dev": "npm run dev --workspace=server",
+    "client:dev": "npm run dev --workspace=client"
   },
   "dependencies": {
+    "@dnd-kit/sortable": "^8.0.0",
     "hono": "^4.2.7"
   },
   "devDependencies": {
@@ -10,6 +12,7 @@
     "tsx": "^4.7.1"
   },
   "workspaces": [
+    "adelfors-slides",
     "server",
     "client",
     "types"

@@ -1,23 +1,16 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
-import { useDroppable } from '@dnd-kit/core'
 
-interface ColumnProps {
-  id: string
+interface ListProps {
   name: string
   className?: string
 }
 
-export const Column = ({
-  id,
+export const List = ({
   name,
-  children,
   className,
-}: React.PropsWithChildren<ColumnProps>) => {
-  const { isOver, setNodeRef } = useDroppable({
-    id,
-  })
-
+  children,
+}: React.PropsWithChildren<ListProps>) => {
   return (
     <div
       className={cn(
@@ -29,16 +22,10 @@ export const Column = ({
         {name}
       </div>
 
-      <div
-        className={cn(
-          'flex-1 flex flex-col gap-4 rounded-md',
-          isOver ? 'bg--500' : ''
-        )}
-        ref={setNodeRef}
-      >
+      <div className={cn('flex-1 flex flex-col gap-4 rounded-md')}>
         {children}
       </div>
     </div>
   )
 }
-Column.displayName = 'Column'
+List.displayName = 'List'

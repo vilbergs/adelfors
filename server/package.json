@@ -4,10 +4,11 @@
   "description": "Our tasks api",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.tsx"
+    "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.0",
+    "@prisma/client": "^5.13.0",
     "hono": "^4.2.7",
     "prisma": "^5.13.0"
   },
